@@ -1,0 +1,19 @@
+<!-- Pricing Calculator Section -->
+<section id="pricing" class="py-16 sm:py-24">
+  <div class="text-center mb-12">
+    <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Get an Estimate</h2>
+    <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Get a ballpark estimate for your project in just a few steps. For a detailed quote, please get in touch.</p>
+  </div>
+  <app-pricing-calculator
+    [calculatorServices]="calculatorServices()"
+    [calculatorScopes]="calculatorScopes()"
+    [calculatorComplexities]="calculatorComplexities()"
+    (scrollTo)="scrollTo.emit($event)">
+  </app-pricing-calculator>
+</section>
+
+<!-- Contact Section -->
+<app-contact id="contact" [contactInfo]="contactInfo()" [initialMessage]="initialContactMessage()"></app-contact>
+
+<!-- CTA Section -->
+<app-cta (scrollTo)="scrollTo.emit($event)"></app-cta>

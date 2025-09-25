@@ -1,0 +1,67 @@
+<!-- Services Section -->
+<section id="services" class="py-16 sm:py-24">
+    <div class="text-center mb-12">
+      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">What We Do</h2>
+      <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">From concept to launch, we provide the expertise to build your digital masterpiece.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      @for (service of services(); track service.title; let i = $index) {
+        <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="bg-white dark:bg-gray-800/30 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-start">
+          <div class="bg-[#EAE8E3] dark:bg-gray-700 w-16 h-16 rounded-xl flex items-center justify-center">
+            <svg class="w-8 h-8 text-[#292639] dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="service.iconPath" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mt-6 text-[#292639] dark:text-white">{{ service.title }}</h3>
+          <p class="text-gray-600 dark:text-gray-400 mt-2 text-base leading-relaxed">{{ service.description }}</p>
+        </div>
+      }
+    </div>
+</section>
+
+<!-- Engagement Models Section -->
+<section id="engagement" class="py-16 sm:py-24 bg-[#EAE8E3] dark:bg-[#292639] rounded-3xl">
+    <div class="text-center mb-12 px-4">
+        <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Engagement Models</h2>
+        <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Flexible, transparent, and tailored to your needs. Choose the partnership model that works best for you.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        @for (model of engagementModels(); track model.title; let i = $index) {
+            <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="bg-white dark:bg-gray-800/30 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col">
+                <div class="bg-[#EAE8E3] dark:bg-gray-700 w-16 h-16 rounded-xl flex items-center justify-center">
+                    <svg class="w-8 h-8 text-[#292639] dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="model.iconPath" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mt-6 text-[#292639] dark:text-white">{{ model.title }}</h3>
+                <p class="text-gray-600 dark:text-gray-400 mt-2 text-base leading-relaxed flex-grow">{{ model.description }}</p>
+                <ul class="mt-6 space-y-3">
+                    @for(feature of model.features; track feature) {
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 dark:text-green-400 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                        <span class="text-gray-700 dark:text-gray-300">{{ feature }}</span>
+                    </li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+</section>
+
+    <!-- Technology Stack Section -->
+<section class="py-16 sm:py-24">
+    <div class="text-center mb-12">
+      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Our Technology Stack</h2>
+      <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">We use cutting-edge technologies to build powerful and scalable solutions.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 items-center">
+      @for (tech of technologies(); track tech.name; let i = $index) {
+        <div appAnimateOnScroll [delay]="(i * 50) + 'ms'" class="flex flex-col items-center justify-center space-y-3 text-center p-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors duration-200">
+          <svg class="w-12 h-12 text-gray-700 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+            <path [attr.d]="tech.svgLogo"></path>
+          </svg>
+          <span class="font-semibold text-sm text-[#292639] dark:text-gray-300">{{ tech.name }}</span>
+        </div>
+      }
+    </div>
+</section>

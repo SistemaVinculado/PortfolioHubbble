@@ -1,0 +1,133 @@
+<!-- Hero Section -->
+<section class="bg-[#EAE8E3] dark:bg-[#292639] rounded-t-3xl mt-8 pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-12 lg:pb-16 px-4">
+    <div class="relative w-full max-w-2xl mx-auto">
+      <svg viewBox="0 0 600 350" class="w-full h-auto">
+        <!-- Connecting Lines -->
+        <path d="M135 70 C 180 90, 220 120, 255 140" stroke="#9CA3AF" class="dark:stroke-gray-600" fill="none" stroke-width="1.5"/>
+        <path d="M115 280 C 160 260, 210 230, 255 200" stroke="#9CA3AF" class="dark:stroke-gray-600" fill="none" stroke-width="1.5"/>
+        <path d="M465 85 C 420 105, 380 130, 345 150" stroke="#9CA3AF" class="dark:stroke-gray-600" fill="none" stroke-width="1.5"/>
+        <path d="M485 270 C 440 250, 390 220, 345 200" stroke="#9CA3AF" class="dark:stroke-gray-600" fill="none" stroke-width="1.5"/>
+        
+        <!-- Phone -->
+        <g transform="translate(300, 190) rotate(-15)">
+          <rect x="-80" y="-160" width="160" height="320" rx="25" class="fill-[#C7C5BF] dark:fill-gray-600"/>
+          <rect x="-75" y="-155" width="150" height="310" rx="20" class="fill-[#4A4A4A] dark:fill-gray-800"/>
+          <path d="M -40 -155 Q -10 -155, -10 -145 L 10 -145 Q 10 -155, 40 -155 Z" class="fill-[#4A4A4A] dark:fill-gray-800" />
+          <rect x="80" y="-80" width="4" height="40" rx="2" class="fill-[#C7C5BF] dark:fill-gray-600" />
+        </g>
+
+        <!-- Abstract Building -->
+        <g transform="translate(-10, 0)">
+          <path d="M260 140 l80 40 v60 l-80 -40 z" class="fill-[#8A6B93] stroke-white dark:stroke-gray-800" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M260 140 l-50 -25 v60 l50 25 z" class="fill-[#A087A7] stroke-white dark:stroke-gray-800" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M210 115 l50 25 l80 -40 l-50 -25 z" class="fill-[#73557C] stroke-white dark:stroke-gray-800" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M215 178 l0 -58 l-40 -20 v58 l40 20 z" class="fill-[#A087A7] stroke-white dark:stroke-gray-800" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M175 100 l40 20 l50 -25 l-40 -20 z" class="fill-[#73557C] stroke-white dark:stroke-gray-800" stroke-width="2.5" stroke-linejoin="round"/>
+        </g>
+
+        <!-- Icons -->
+        <g transform="translate(100, 70)">
+          <circle cx="0" cy="0" r="35" class="fill-[#F5F3EF] dark:fill-gray-700 stroke-[#111827] dark:stroke-gray-300" stroke-width="1.5" />
+          <g transform="translate(0, 2)" class="stroke-[#111827] dark:stroke-gray-300" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M-12,-10 l8,10 l-8,10" />
+            <path d="M12,10 l-8,-10 l8,-10" />
+            <path d="M-4 2 l4 4 l8 -8" stroke-width="3"/>
+          </g>
+        </g>
+        <g transform="translate(80, 280)">
+          <circle cx="0" cy="0" r="35" class="fill-[#F5F3EF] dark:fill-gray-700 stroke-[#111827] dark:stroke-gray-300" stroke-width="1.5" />
+          <g transform="translate(0, 0)" class="stroke-[#111827] dark:stroke-gray-300" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M -10 12 L 0 -12 L 10 12 L 8 14 H -8 Z" />
+              <path d="M -2 -12 v -3 M 2 -12 v -3" />
+          </g>
+        </g>
+        <g transform="translate(500, 85)">
+          <circle cx="0" cy="0" r="35" class="fill-[#F5F3EF] dark:fill-gray-700 stroke-[#111827] dark:stroke-gray-300" stroke-width="1.5" />
+          <path d="M -2 -15 l -8 12 h 6 l 2 10 l 8 -14 h -6 z" class="fill-[#111827] dark:fill-gray-300" stroke="none" />
+        </g>
+        <g transform="translate(520, 270)">
+          <circle cx="0" cy="0" r="35" class="fill-[#F5F3EF] dark:fill-gray-700 stroke-[#111827] dark:stroke-gray-300" stroke-width="1.5" />
+          <g transform="translate(0,2)" class="stroke-[#111827] dark:stroke-gray-300" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M-15,10 C-25,-5, -10,-15, 0,-10 C10,-15, 25,-5, 15,10 Z" />
+            <path d="M-8 -5 l8 8 m-8 0 l8-8" />
+          </g>
+        </g>
+      </svg>
+    </div>
+</section>
+
+<!-- Content Section -->
+<section id="about" class="bg-white dark:bg-gray-800/20 rounded-b-3xl -mt-1 py-16 px-8 md:px-12 lg:px-20">
+    <!-- Trusted By Section -->
+    <div class="max-w-5xl mx-auto" appAnimateOnScroll>
+      <p class="text-center text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 tracking-wider">
+        Trusted by the world’s most innovative companies
+      </p>
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+        @for (client of clients(); track client.name; let i = $index) {
+          <div class="col-span-1 flex justify-center text-center" appAnimateOnScroll [delay]="(i * 100) + 'ms'">
+            <span class="text-xl font-bold text-gray-400 dark:text-gray-500 transition-colors duration-300 hover:text-gray-700 dark:hover:text-gray-300">
+              {{ client.name }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- By the Numbers Section -->
+    <div class="mt-20 py-16 bg-[#EAE8E3] dark:bg-[#292639] rounded-2xl" appAnimateOnScroll>
+      <div class="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 px-4">
+        @for (stat of stats(); track stat.label; let i = $index) {
+          <div class="text-center" appAnimateOnScroll [delay]="(i * 100) + 'ms'">
+            <div class="flex items-center justify-center w-16 h-16 mx-auto bg-white dark:bg-gray-800/50 rounded-xl mb-4">
+                <svg class="w-8 h-8 text-[#8A6B93] dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="stat.iconPath" />
+                </svg>
+            </div>
+            <p class="text-4xl md:text-5xl font-extrabold text-[#292639] dark:text-white tracking-tighter">
+              <span [appCountUp]="stat.value">0</span>{{ stat.suffix }}
+            </p>
+            <p class="mt-2 text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">{{ stat.label }}</p>
+          </div>
+        }
+      </div>
+    </div>
+    
+    <!-- About Us Content -->
+    <div class="mt-20 grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+      <!-- Left side -->
+      <div class="lg:col-span-3 flex flex-col items-start space-y-8">
+        <h1 appAnimateOnScroll class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter text-[#292639] dark:text-white">
+          One agency.<br>
+          Total digital<br>
+          mastery. Elite.
+        </h1>
+        <a appAnimateOnScroll delay="100ms" (click)="onScrollTo($event, '#services')" href="#services" class="w-14 h-14 rounded-full bg-[#EAE8E3] dark:bg-gray-700 flex items-center justify-center cursor-pointer hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300">
+          <svg class="w-7 h-7 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m0 0l-6-6m6 6l6-6" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Right side -->
+      <div class="lg:col-span-2 flex flex-col items-start space-y-8">
+        <p appAnimateOnScroll class="text-gray-600 dark:text-gray-400 leading-relaxed max-w-md text-base">
+          An elite digital agency crafting bespoke web applications with Angular and React for prestigious clients. Our system transforms complex ideas into flawless, scalable digital experiences with real-time collaboration and transparent progress tracking. Experience peace of mind knowing your digital presence is architected by the best.
+        </p>
+        <div appAnimateOnScroll delay="100ms" class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <a href="#portfolio" (click)="onScrollTo($event, '#portfolio')" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-5 py-3 rounded-full font-semibold flex items-center space-x-2.5 hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.125c0 1.326-.816 2.4-1.875 2.4H5.625c-1.06 0-1.875-1.074-1.875-2.4V14.15M15.75 13.5v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a3.375 3.375 0 00-3.375 3.375V13.5m11.25 0h-11.25" />
+            </svg>
+            <span>View Our Work</span>
+          </a>
+          <a href="#contact" (click)="onScrollTo($event, '#contact')" class="bg-[#EAE8E3] dark:bg-gray-700 text-[#292639] dark:text-gray-200 px-5 py-3 rounded-full font-semibold flex items-center space-x-2.5 hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300 transform hover:scale-105">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18" />
+            </svg>
+            <span>Schedule a Call</span>
+          </a>
+        </div>
+      </div>
+    </div>
+</section>

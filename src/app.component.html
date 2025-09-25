@@ -1,0 +1,105 @@
+<!-- Preloader -->
+@if(isLoading()) {
+<div class="fixed inset-0 bg-[#F5F3EF] dark:bg-[#1C1A27] z-50 flex items-center justify-center transition-opacity duration-500 ease-out"
+    [class.opacity-0]="!isLoading()">
+    <div class="text-3xl font-bold tracking-tight text-[#292639] dark:text-white animate-pulse">StellarDev</div>
+</div>
+}
+
+<div class="bg-[#F5F3EF] dark:bg-[#1C1A27] antialiased text-[#292639] dark:text-gray-200">
+  <app-header
+    [navLinks]="navLinks()"
+    [theme]="theme()"
+    [isMobileMenuOpen]="isMobileMenuOpen()"
+    (toggleTheme)="toggleTheme()"
+    (toggleMobileMenu)="toggleMobileMenu()"
+    (closeMobileMenu)="closeMobileMenu()"
+    (scrollTo)="scrollTo($event.event, $event.href)">
+  </app-header>
+
+  <main class="min-h-screen flex flex-col items-center">
+    <div class="w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+      <app-intro
+        [clients]="clients()"
+        [stats]="stats()"
+        (scrollTo)="scrollTo($event.event, $event.href)">
+      </app-intro>
+      
+      <app-features
+        [services]="services()"
+        [engagementModels]="engagementModels()"
+        [technologies]="technologies()">
+      </app-features>
+      
+      <app-work
+        [portfolioItems]="filteredPortfolioItems()"
+        [processSteps]="processSteps()"
+        [teamMembers]="teamMembers()"
+        [categories]="portfolioCategories()"
+        [activeCategory]="activePortfolioCategory()"
+        (openPortfolioModal)="openPortfolioModal($event)"
+        (filterChange)="onPortfolioFilterChange($event)">
+      </app-work>
+
+      <app-community
+        [jobOpenings]="jobOpenings()"
+        [labExperiments]="labExperiments()"
+        [blogPosts]="blogPosts()"
+        (scrollTo)="handleScrollToWithMessage($event)"
+        (openBlogModal)="openBlogModal($event)">
+      </app-community>
+
+      <app-social-proof
+        [testimonials]="testimonials()"
+        [awards]="awards()"
+        [faqs]="faqs()"
+        [openFaqIndex]="openFaqIndex()"
+        (toggleFaq)="toggleFaq($event)">
+      </app-social-proof>
+
+      <app-action-zone
+        [calculatorServices]="calculatorServices()"
+        [calculatorScopes]="calculatorScopes()"
+        [calculatorComplexities]="calculatorComplexities()"
+        [contactInfo]="contactInfo()"
+        [initialContactMessage]="contactFormMessage()"
+        (scrollTo)="handleScrollToWithMessage($event)">
+      </app-action-zone>
+
+    </div>
+    
+    <app-footer
+      [currentYear]="currentYear"
+      [navLinks]="navLinks()"
+      (scrollTo)="scrollTo($event.event, $event.href)"
+      (openTermsModal)="openTermsModal()"
+      (openPrivacyModal)="openPrivacyModal()">
+    </app-footer>
+
+  </main>
+
+  <!-- Modals and Overlays -->
+  @if(showCookieBanner()) {
+    <app-cookie-banner (accept)="acceptCookies()"></app-cookie-banner>
+  }
+  
+  @if(showBackToTop()) {
+    <app-back-to-top (backToTop)="scrollToTop()"></app-back-to-top>
+  }
+  
+  @if (selectedPortfolioItem(); as item) {
+    <app-portfolio-modal [item]="item" (close)="closePortfolioModal()"></app-portfolio-modal>
+  }
+
+  @if (selectedBlogPost(); as post) {
+    <app-blog-modal [post]="post" (close)="closeBlogModal()"></app-blog-modal>
+  }
+
+  @if (showPrivacyModal()) {
+    <app-legal-modal [content]="privacyPolicy()" (close)="closePrivacyModal()"></app-legal-modal>
+  }
+
+  @if (showTermsModal()) {
+    <app-legal-modal [content]="termsOfService()" (close)="closeTermsModal()"></app-legal-modal>
+  }
+</div>

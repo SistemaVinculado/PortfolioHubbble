@@ -1,0 +1,92 @@
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-16 sm:py-24 bg-[#EAE8E3] dark:bg-[#292639] rounded-3xl">
+    <div class="text-center mb-12 px-4">
+      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Our Work</h2>
+      <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">We’ve helped some of the world’s most innovative companies turn ideas into reality.</p>
+    </div>
+    
+    <!-- Portfolio Filter -->
+    <div appAnimateOnScroll delay="200ms" class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-10 px-4">
+      @for(category of categories(); track category) {
+        <button 
+          (click)="filterChange.emit(category)"
+          [class]="activeCategory() === category 
+            ? 'bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639]' 
+            : 'bg-white/50 dark:bg-gray-800/30 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800'"
+          class="px-5 py-2.5 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
+          {{ category }}
+        </button>
+      }
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 sm:px-6 lg:px-8">
+      @for (item of portfolioItems(); track item.title; let i = $index) {
+        <button type="button" (click)="openPortfolioModal.emit(item)" appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="group rounded-2xl overflow-hidden bg-white dark:bg-gray-800/30 shadow-sm border border-gray-200/50 dark:border-gray-700/50 text-left focus:outline-none focus:ring-2 focus:ring-offset-4 focus:ring-offset-[#EAE8E3] dark:focus:ring-offset-[#292639] focus:ring-[#8A6B93]">
+          <div class="overflow-hidden">
+            <img [ngSrc]="item.imageUrl" [alt]="item.title" width="800" height="600" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out">
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-semibold text-[#8A6B93] dark:text-purple-400">{{ item.category }}</p>
+            <h3 class="text-xl font-bold mt-2 text-[#292639] dark:text-white">{{ item.title }}</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              @for (tag of item.tags; track tag) {
+                <span class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 text-xs font-semibold px-3 py-1 rounded-full">{{ tag }}</span>
+              }
+            </div>
+          </div>
+        </button>
+      }
+    </div>
+</section>
+
+<!-- Process Section -->
+<section id="process" class="py-16 sm:py-24" #processSection>
+    <div class="text-center mb-16">
+      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Our Process</h2>
+      <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">A streamlined and transparent process to ensure your project's success from start to finish.</p>
+    </div>
+    <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+      <!-- Dashed line for larger screens -->
+      <div class="hidden lg:block absolute top-12 left-0 w-full h-px -mt-px">
+          <svg class="w-full" height="2" preserveAspectRatio="none" viewBox="0 0 100 2" style="vector-effect: non-scaling-stroke;">
+              <path id="process-line" d="M0 1 H100" stroke-dasharray="4 4" class="stroke-[#D1D5DB] dark:stroke-gray-600" stroke-width="2"/>
+          </svg>
+      </div>
+      @for (step of processSteps(); track step.step; let i = $index) {
+        <div class="process-step relative flex flex-col items-center text-center p-4">
+          <div class="bg-[#292639] dark:bg-gray-700 text-white dark:text-gray-200 w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold border-8 border-[#F5F3EF] dark:border-[#1C1A27] z-10">
+            {{ step.step }}
+          </div>
+          <h3 class="text-xl font-bold mt-6 text-[#292639] dark:text-white">{{ step.title }}</h3>
+          <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm leading-relaxed">{{ step.description }}</p>
+        </div>
+      }
+    </div>
+</section>
+
+<!-- Meet the Team Section -->
+<section id="team" class="py-16 sm:py-24">
+    <div class="text-center mb-16">
+      <h2 appAnimateOnScroll class="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#292639] dark:text-white">Meet Our Experts</h2>
+      <p appAnimateOnScroll delay="100ms" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">The brilliant minds turning your complex challenges into elegant digital solutions.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      @for (member of teamMembers(); track member.name; let i = $index) {
+        <div appAnimateOnScroll [delay]="(i * 100) + 'ms'" class="group text-center">
+          <div class="relative">
+            <img [ngSrc]="member.imageUrl" [alt]="member.name" width="300" height="300" class="rounded-2xl w-full h-auto object-cover mx-auto shadow-lg transition-transform duration-300 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+              <a [href]="member.socials.twitter" class="text-white hover:text-gray-200">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+              </a>
+              <a [href]="member.socials.linkedin" class="text-white hover:text-gray-200">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+            </div>
+          </div>
+          <h3 class="mt-4 text-lg font-bold text-[#292639] dark:text-white">{{ member.name }}</h3>
+          <p class="text-gray-500 dark:text-gray-400">{{ member.title }}</p>
+        </div>
+      }
+    </div>
+</section>

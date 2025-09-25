@@ -1,0 +1,98 @@
+<div appAnimateOnScroll class="max-w-4xl mx-auto bg-white dark:bg-gray-800/30 p-8 sm:p-10 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700/50">
+    <div [formGroup]="calculatorForm">
+        <!-- Progress Bar -->
+    <div class="mb-8">
+        <div class="relative h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+        <div class="absolute top-0 left-0 h-2 bg-[#8A6B93] dark:bg-purple-500 rounded-full transition-all duration-500" [style.width.%]="calculatorStep() === 1 ? 0 : calculatorStep() === 2 ? 50 : 100"></div>
+        </div>
+        <div class="mt-2 grid grid-cols-3 text-sm font-semibold text-gray-600 dark:text-gray-400 [&_.active-step]:text-[#292639] [&_.active-step]:dark:text-white">
+        <div class="text-left" [class.active-step]="calculatorStep() >= 1">Services</div>
+        <div class="text-center" [class.active-step]="calculatorStep() >= 2">Scope</div>
+        <div class="text-right" [class.active-step]="calculatorStep() === 3">Estimate</div>
+        </div>
+    </div>
+
+    @switch (calculatorStep()) {
+        @case (1) {
+        <div formGroupName="services">
+            <h3 class="text-2xl font-bold text-[#292639] dark:text-white mb-6">Step 1: Select Services</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            @for(service of calculatorServices(); track service.id) {
+                <label class="p-6 border-2 dark:border-gray-600 rounded-lg cursor-pointer transition-all duration-200" [class]="calculatorForm.get('services.' + service.id)?.value ? 'border-[#8A6B93] dark:border-purple-500 bg-purple-50 dark:bg-purple-900/20' : 'border-gray-200'">
+                <input type="checkbox" [formControlName]="service.id" class="hidden">
+                <div class="font-bold text-lg text-[#292639] dark:text-white">{{ service.name }}</div>
+                </label>
+            }
+            </div>
+            <div class="mt-8 flex justify-end">
+            <button (click)="setCalculatorStep(2)" [disabled]="!servicesSelected()" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 disabled:bg-gray-400 disabled:dark:bg-gray-600 disabled:scale-100 disabled:cursor-not-allowed">
+                Next: Define Scope
+            </button>
+            </div>
+        </div>
+        }
+        @case (2) {
+        <div>
+            <h3 class="text-2xl font-bold text-[#292639] dark:text-white mb-6">Step 2: Define Scope & Complexity</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h4 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Project Scope</h4>
+                <div class="space-y-3">
+                    @for(scope of calculatorScopes(); track scope.id) {
+                    <label class="block p-4 border-2 dark:border-gray-600 rounded-lg cursor-pointer transition-all duration-200" [class]="calculatorForm.get('scope')?.value === scope.id ? 'border-[#8A6B93] dark:border-purple-500 bg-purple-50 dark:bg-purple-900/20' : 'border-gray-200'">
+                        <input type="radio" formControlName="scope" [value]="scope.id" class="hidden">
+                        <div class="font-bold text-md text-[#292639] dark:text-white">{{ scope.name }}</div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ scope.description }}</p>
+                    </label>
+                    }
+                </div>
+            </div>
+                <div>
+                <h4 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Project Complexity</h4>
+                <div class="space-y-3">
+                    @for(complexity of calculatorComplexities(); track complexity.id) {
+                    <label class="block p-4 border-2 dark:border-gray-600 rounded-lg cursor-pointer transition-all duration-200" [class]="calculatorForm.get('complexity')?.value === complexity.id ? 'border-[#8A6B93] dark:border-purple-500 bg-purple-50 dark:bg-purple-900/20' : 'border-gray-200'">
+                        <input type="radio" formControlName="complexity" [value]="complexity.id" class="hidden">
+                        <div class="font-bold text-md text-[#292639] dark:text-white">{{ complexity.name }}</div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ complexity.description }}</p>
+                    </label>
+                    }
+                </div>
+            </div>
+            </div>
+            <div class="mt-8 flex justify-between">
+            <button (click)="setCalculatorStep(1)" class="bg-[#EAE8E3] dark:bg-gray-700 text-[#292639] dark:text-gray-200 px-6 py-3 rounded-full font-semibold hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300">
+                Back
+            </button>
+            <button (click)="setCalculatorStep(3)" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105">
+                Calculate Estimate
+            </button>
+            </div>
+        </div>
+        }
+        @case (3) {
+            <div class="text-center">
+            <h3 class="text-2xl font-bold text-[#292639] dark:text-white mb-4">Your Estimated Price Range</h3>
+            <div class="my-6">
+                @if(estimatedPrice().min > 0) {
+                    <p class="text-5xl md:text-7xl font-extrabold text-[#8A6B93] dark:text-purple-400 tracking-tighter">
+                        ${{ estimatedPrice().min.toLocaleString() }} - ${{ estimatedPrice().max.toLocaleString() }}
+                    </p>
+                    <p class="mt-2 text-gray-500 dark:text-gray-400">This is a ballpark estimate. The actual cost may vary based on detailed project requirements.</p>
+                } @else {
+                        <p class="text-2xl font-bold text-gray-600 dark:text-gray-400">Please select a service to get an estimate.</p>
+                }
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+                <button (click)="resetCalculator()" class="bg-[#EAE8E3] dark:bg-gray-700 text-[#292639] dark:text-gray-200 px-6 py-3 rounded-full font-semibold hover:bg-opacity-80 dark:hover:bg-opacity-70 transition-all duration-300">
+                    Start Over
+                </button>
+                <button (click)="onScrollTo($event, '#contact', getCalculatorSummaryMessage())" [disabled]="estimatedPrice().min === 0" class="bg-[#292639] dark:bg-gray-100 text-white dark:text-[#292639] px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 dark:hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 disabled:bg-gray-400 disabled:dark:bg-gray-600 disabled:scale-100 disabled:cursor-not-allowed">
+                    Get a Detailed Quote
+                </button>
+            </div>
+        </div>
+        }
+    }
+    </div>
+</div>
